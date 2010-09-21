@@ -3,11 +3,19 @@
 %script{:src => "http://static.ak.fbcdn.net/connect.php/js/FB.Share", :type => "text/javascript"}
 %a.twitter-share-button{"data-count" => "none", "data-text" => "Check out my Fotolog photos on Fotologffffffu", :href => "http://twitter.com/share"} Tweet
 %script{:src => "http://platform.twitter.com/widgets.js", :type => "text/javascript"}
-%h1 fotologffffffu! 
+%h1 fotologffffffu!
 
-
-
- 
 - @photos.each do |each|
-    %img(src = each) 
- 
+    %img(src = each)
+
+:javascript
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-5809819-8']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
