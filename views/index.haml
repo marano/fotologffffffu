@@ -17,8 +17,14 @@
 
 %h1 fotologffffffu!
 
-- @photos.each do |each|
-    %img(src = each)
+%form(action = '/')
+    %input(name = 'username')
+    %input{:id => 'go', :type => 'submit', :value => 'Give it to me baby!'}
+
+- unless @photos.nil?
+    %div{:id => 'photos'}
+    - @photos.each do |each|
+        %img(src = each)
 
 :javascript
     var _gaq = _gaq || [];
