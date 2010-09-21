@@ -1,8 +1,18 @@
-- @title = 'fotologffffffu'
+- @title = "fotologffffffu -- #{params[:name]}"
 %a{:href => "http://www.facebook.com/sharer.php", :name => "fb_share", :type => "button"} Share
 %script{:src => "http://static.ak.fbcdn.net/connect.php/js/FB.Share", :type => "text/javascript"}
 %a.twitter-share-button{"data-count" => "none", "data-text" => "Check out my Fotolog photos on Fotologffffffu", :href => "http://twitter.com/share"} Tweet
 %script{:src => "http://platform.twitter.com/widgets.js", :type => "text/javascript"}
+%script{:src => "http://www.google.com/jsapi", :type => "text/javascript"}
+#orkut-button
+:javascript
+    google.load('orkut.share', '1');
+    google.setOnLoadCallback(function() {
+      new google.orkut.share.Button({
+      summary: 'I got all my fotolog photos on fotologffffffu'
+        }).draw('orkut-button');
+        });
+
 %h1 fotologffffffu!
 
 - @photos.each do |each|
