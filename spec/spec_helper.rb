@@ -10,7 +10,7 @@ set :views => File.join(File.dirname(__FILE__), "..", "views")
 @@browser = Rack::Test::Session.new(Rack::MockSession.new(Sinatra::Application))
 
 
-FakeWeb.allow_net_connect = true
+FakeWeb.allow_net_connect = false
 
 def browser
   @@browser

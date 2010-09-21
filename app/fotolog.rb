@@ -19,7 +19,7 @@ class Fotolog
   end
   
   def photos_for_month year, month
-    doc = Nokogiri::HTML(open("http://www.fotolog.com.br/#{@user}/archive?year=#{year}&month=#{month}"))
+    doc = Nokogiri::HTML(open("http://www.fotolog.com.br/#{@user}/archive?year=#{year}&month=#{'0' if month.to_i < 10}#{month.to_i}"))
     doc.css('.imageContainer img').map do |photo|
       photo.attributes['src'].value.gsub('_t', '_f')
     end
