@@ -2,8 +2,9 @@ require 'rubygems'
 require 'bundler'
  
 Bundler.setup
+Bundler.require :default
+require 'open-uri'
 
-require 'sinatra'
 
 set :app_file, __FILE__
 set :root, File.dirname(__FILE__)
