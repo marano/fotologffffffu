@@ -18,8 +18,10 @@
 %h1 fotologffffffu!
 
 %form(action = '/')
-    %input(name = 'username')
-    %input{:id => 'go', :type => 'submit', :value => 'Give it to me baby!'}
+    %p
+        fotolog.com/
+        %input{:name => 'username', :value => 'YourUsername'}
+        %input{:id => 'go', :type => 'submit', :value => 'Give it to me baby!'}
 
 - unless @photos.nil?
     %div{:id => 'photos'}
