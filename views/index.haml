@@ -1,6 +1,9 @@
 - @title = 'fotologffffffu'
 
-%h2 fotologffffffu!
+%h2 fotologffffffu! %a{:href => "http://www.facebook.com/sharer.php", :name => "fb_share", :type => "button"} Share
+%script{:src => "http://static.ak.fbcdn.net/connect.php/js/FB.Share", :type => "text/javascript"}
+
+
  
 - @photos.each do |each|
     %img(src = each) 
