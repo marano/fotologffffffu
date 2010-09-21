@@ -17,6 +17,14 @@
 
 %h1 fotologffffffu!
 
-- @photos.each do |each|
-    %img(src = each)
+%form(action = '/')
+    %p
+        fotolog.com/
+        %input{:name => 'username', :value => 'YourUsername'}
+        %input{:id => 'go', :type => 'submit', :value => 'Give it to me baby!'}
+
+- unless @photos.nil?
+    %div{:id => 'photos'}
+    - @photos.each do |each|
+        %img(src = each)
 
