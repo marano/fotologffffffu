@@ -18,6 +18,9 @@ describe 'home page' do
     it 'should open user photos' do
       page.should have_xpath "//div[@id='photos']"
     end
+    it 'should show the user name on the search box' do
+      page.should have_xpath "//input[@name='username']"
+    end
   end
 end
 
