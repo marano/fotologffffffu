@@ -11,6 +11,7 @@
    <allow-access-from domain="*" to-ports="*" />
    
    -->
+   <allow-access-from domain="*.cooliris.com" secure="false" />
 </cross-domain-policy>
 
 
