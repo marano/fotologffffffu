@@ -344,6 +344,26 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: bold;
 }
 
+h1 {
+  font-size: 1000%;
+}
+
+#content {
+  text-align: center;
+}
+
+#search_label {
+  font-size: 350%;
+}
+
+#search_box {
+  font-size: 210%;
+}
+
+#search_button {
+  font-size: 200%;
+}
+
 /* line 14, ../src/partials/_page.scss */
 strong, th {
   font-weight: bold;

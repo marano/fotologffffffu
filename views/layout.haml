@@ -36,11 +36,12 @@
         %script{ :src => "js/modernizr-1.5.min.js" }
 
     %body
-        #container
-            %header
-            #main
-                = yield
-            %footer
+        #content
+            #container
+                %header
+                #main
+                    = yield
+                %footer
 
     -#
         Javascript at the bottom for fast page loading
