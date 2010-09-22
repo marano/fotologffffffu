@@ -12,14 +12,14 @@ describe 'home page' do
   context 'filling username and clicking go' do
     before do
       mock_requests_fixture_for_fotolog
-      fill_in 'username', :with => 'marano'
+      fill_in 'name', :with => 'marano'
       click_button 'go'
     end
     it 'should open user photos' do
       page.should have_xpath "//div[@id='photos']"
     end
     it 'should show the user name on the search box' do
-      page.should have_xpath "//input[@name='username']"
+      page.should have_xpath "//input[@name='name']"
     end
   end
 end

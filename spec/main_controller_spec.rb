@@ -16,7 +16,7 @@ describe 'main controller' do
   context 'submited a user via a form' do
     before do
       mock_requests_fixture_for_fotolog
-      get '/', :username => 'marano'
+      get '/', :name => 'marano'
     end
     it 'should be a redirect' do
       last_response.status.should be 302
@@ -39,6 +39,21 @@ describe 'main controller' do
       
       photos.each {|photo| last_response.body.match(photo).should be_true }
     end
+  end
+  
+  context 'slide show' do
+    before { get '/marano/slide' }
+    it 'should be ok' do
+      last_response.should be_ok
+    end
+  end
+  
+  context 'rss feed' do
+    before { get '/marano/feed' }
+      it 'should be ok' do
+        last_response.should be_ok
+      end
+
   end
 end
 

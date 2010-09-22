@@ -1,15 +1,28 @@
 get '/' do
-  if params.has_key? 'username'
-    redirect "/#{params[:username]}"
+  if params.has_key? 'name'
+    redirect "/#{params[:name]}"
   else
     haml :index
   end
 end
 
 get '/:name' do
-  @name = params[:name]
-  fotolog = Fotolog.new(@name)
-  @photos = fotolog.years.map { |year| (1..12).map { |month| fotolog.photos_for_month year, month}}.flatten
+  retrieve_photos
   haml :index
 end
 
+get '/:name/slide' do
+  retrieve_photos
+  haml :slide
+end
+
+get '/:name/feed' do
+  retrieve_photos
+  haml :feed, :layout => false
+end
+
+def retrieve_photos
+  @name = params[:name]
+  fotolog = Fotolog.new(@name)
+  @photos = fotolog.photos
+end
