@@ -352,6 +352,10 @@ h1 {
   text-align: center;
 }
 
+#search {
+    margin: 20px;
+}
+
 #search_label {
   font-size: 350%;
 }
