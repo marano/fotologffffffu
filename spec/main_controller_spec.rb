@@ -7,9 +7,9 @@ end
 
 describe 'main controller' do
   context 'home page' do
-    before { browser.get '/' }
+    before { get '/' }
     it 'should be ok' do
-      browser.last_response.should be_ok
+      last_response.should be_ok
     end
   end
   
@@ -29,15 +29,15 @@ describe 'main controller' do
   context 'given a fotolog' do
     before do
       mock_requests_fixture_for_fotolog
-      browser.get '/marano'
+      get '/marano'
     end
     it 'should be ok' do
-      browser.last_response.should be_ok
+      last_response.should be_ok
     end
     it 'should retrieve a list of photos' do
       photos = ["http://sp4.fotolog.com.br/photo/20/29/104/marano/1220844280164_f.jpg", "http://sp4.fotolog.com.br/photo/20/29/104/marano/1221058240106_f.jpg", "http://sp4.fotolog.com.br/photo/20/29/104/marano/1221348619989_f.jpg", "http://sp4.fotolog.com.br/photo/20/29/104/marano/1221433699200_f.jpg", "http://sp4.fotolog.com.br/photo/20/29/104/marano/1221691789949_f.jpg", "http://sp4.fotolog.com.br/photo/20/29/104/marano/1222477956299_f.jpg"]
       
-      photos.each {|photo| browser.last_response.body.match(photo).should be_true }
+      photos.each {|photo| last_response.body.match(photo).should be_true }
     end
   end
 end
