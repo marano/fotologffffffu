@@ -1,14 +1,14 @@
 !!! XML 
-%rss{ :version => "2.0" }
+%rss{:version => "2.0", "xmlns:atom" => "http://www.w3.org/2005/Atom", "xmlns:media" => "http://search.yahoo.com/mrss/"}
     %channel 
-    %title = "Fotologffffffu -- #{@name}"
-    %link= "http://fotologffffffu.heroku.com/#{@name}"
-    %description Get your fotolog photos back!
-    %language en-us
-    - @photos.each do |photo|
-        %item 
-            %link= "http://fotologffffffu.heroku.com/#{@name}"
-            %guid= photo
-            %author= @name
-            %media:content{:url => photo}
-            %media:thumbnail{:url => photo}
+        %title= "Fotologffffffu -- #{@name}"
+        %link= "http://fotologffffffu.heroku.com/#{@name}"
+        %description Get your fotolog photos back!
+        %language en-us
+        - @photos.each do |photo|
+            %item 
+                %link= "http://fotologffffffu.heroku.com/#{@name}"
+                %guid= photo
+                %author= @name
+                %media:content{:url => photo}
+                %media:thumbnail{:url => photo}
