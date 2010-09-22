@@ -11,7 +11,6 @@
    <allow-access-from domain="*" to-ports="*" />
    
    -->
-   okkk
    <allow-access-from domain="*.cooliris.com" secure="false" />
 </cross-domain-policy>
 
