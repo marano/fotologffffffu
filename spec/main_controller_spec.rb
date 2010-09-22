@@ -14,9 +14,16 @@ describe 'main controller' do
   end
   
   context 'submited a user via a form' do
-    mock_requests_fixture_for_fotolog
-    get '/', :username => 'marano'
-    last_response.headers['Location'].should == '/marano'    
+    before do
+      mock_requests_fixture_for_fotolog
+      get '/', :username => 'marano'
+    end
+    it 'should be a redirect' do
+      last_response.status.should be 302
+    end
+    it 'should go to fotolog page' do
+      last_response.headers['Location'].should == '/marano'
+    end
   end
   
   context 'given a fotolog' do
