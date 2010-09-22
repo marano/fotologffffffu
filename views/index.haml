@@ -1,5 +1,5 @@
 - @title = "fotologffffffu -- #{params[:name]}"
-- @name ||= "YourUsername"
+
 %a{:href => "http://www.facebook.com/sharer.php", :name => "fb_share", :type => "button"} Share
 %br
 %script{:src => "http://static.ak.fbcdn.net/connect.php/js/FB.Share", :type => "text/javascript"}
@@ -13,11 +13,11 @@
 %form(action = '/')
     %p
         fotolog.com/
-        %input{:name => 'username', :value => @name}
+        %input{:name => 'name', :value => @name}
         %input{:id => 'go', :type => 'submit', :value => 'Give it to me baby!'}
 
 - unless @photos.nil?
     %div{:id => 'photos'}
-    - @photos.each do |each|
-        %img(src = each)
+        - @photos.each do |photo|
+            %img(src = photo)
 
