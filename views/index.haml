@@ -2,11 +2,12 @@
 
 %h1 fotologffffffu!
 
-%form{:action => '/', :style => 'float: none;'}
-    %label{:for => 'name', :id => 'search_label'}
-        = 'fotolog.com/'
-    %input{:name => 'name', :value => @name, :id => 'search_box'}
-    %input{:id => 'go', :type => 'submit', :value => 'Give it to me baby!', :id => 'search_button'}
+#search
+    %form{:action => '/', :style => 'float: none;'}
+        %label{:for => 'name', :id => 'search_label'}
+            = 'fotolog.com/'
+        %input{:name => 'name', :value => @name, :id => 'search_box'}
+        %input{:id => 'go', :type => 'submit', :value => 'Give it to me baby!', :id => 'search_button'}
 
 - unless @photos.nil?
     %div{:id => 'photos'}
@@ -14,7 +15,6 @@
             %img(src = photo)
 
 #share{:style => 'clear: both;'}
-    %br
     %a{:href => "http://www.facebook.com/sharer.php", :name => "fb_share", :type => "button"} Share
     %br
     %script{:src => "http://static.ak.fbcdn.net/connect.php/js/FB.Share", :type => "text/javascript"}
