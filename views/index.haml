@@ -1,4 +1,5 @@
 - @title = "fotologffffffu -- #{params[:name]}"
+- @name ||= "YourUsername"
 %a{:href => "http://www.facebook.com/sharer.php", :name => "fb_share", :type => "button"} Share
 %br
 %script{:src => "http://static.ak.fbcdn.net/connect.php/js/FB.Share", :type => "text/javascript"}
@@ -20,22 +21,11 @@
 %form(action = '/')
     %p
         fotolog.com/
-        %input{:name => 'username', :value => 'YourUsername'}
+        %input{:name => 'username', :value => @name}
         %input{:id => 'go', :type => 'submit', :value => 'Give it to me baby!'}
 
 - unless @photos.nil?
     %div{:id => 'photos'}
     - @photos.each do |each|
         %img(src = each)
-
-:javascript
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-5809819-8']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
 
