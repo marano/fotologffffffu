@@ -6,17 +6,3 @@
     %param{:name => "allowScriptAccess", :value => "always"}/
     %param{:name => "flashvars", :value => "feed=http://fotologffffffu.heroku.com/#{@name}/feed"}/
     %embed{:allowFullScreen => "true", :allowScriptAccess => "always", :flashvars => "feed=http://fotologffffffu.heroku.com/#{@name}/feed", :height => "450", :src => "http://apps.cooliris.com/embed/cooliris.swf", :type => "application/x-shockwave-flash", :width => "600"}
-%a{:href => "http://www.facebook.com/sharer.php", :name => "fb_share", :type => "button"} Share
-%br
-%script{:src => "http://static.ak.fbcdn.net/connect.php/js/FB.Share", :type => "text/javascript"}
-%a.twitter-share-button{"data-count" => "none", "data-text" => "Check out my Fotolog photos on Fotologffffffu", :href => "http://twitter.com/share"} Tweet
-%script{:src => "http://platform.twitter.com/widgets.js", :type => "text/javascript"}
-%br
-%script{:src => "http://www.google.com/jsapi", :type => "text/javascript"}
-
-
-- unless @photos.nil?
-    %div{:id => 'photos'}
-    - @photos.each do |each|
-        %img(src = each)
-

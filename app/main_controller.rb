@@ -12,7 +12,7 @@ get '/:name' do
 end
 
 get '/:name/slide' do
-  retrieve_photos
+  @name = params[:name]
   haml :slide
 end
 
