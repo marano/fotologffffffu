@@ -2,12 +2,7 @@
 
 %h1 fotologffffffu!
 
-#search
-    %form{:action => '/', :style => 'float: none;'}
-        %label{:for => 'name', :id => 'search_label'}
-            = 'fotolog.com/'
-        %input{:name => 'name', :id => 'search_box'}
-        %input{:id => 'search_button', :type => 'submit', :value => 'Give it to me baby!'}
+= partial('search')
 
 - unless @recent_users.nil?
     %recent_users
@@ -20,11 +15,5 @@
                         %a{:href => "/#{each}"}
                             = "/#{each}"
 
-#share{:style => 'margin-top: 20px;'}
-    #facebook_share{:style => 'margin: 10px;'}
-        %a{:href => "http://www.facebook.com/sharer.php", :name => "fb_share", :type => "button"} Share
-    #twitter_share{:style => 'margin: 10px;'}
-        %script{:src => "http://static.ak.fbcdn.net/connect.php/js/FB.Share", :type => "text/javascript"}
-        %a.twitter-share-button{"data-count" => "none", "data-text" => "Check out my Fotolog photos on Fotologffffffu", :href => "http://twitter.com/share"} Tweet
-        %script{:src => "http://platform.twitter.com/widgets.js", :type => "text/javascript"}
+= partial('share')
 

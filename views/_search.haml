@@ -1,0 +1,6 @@
+#search
+    %form{:action => '/', :style => 'float: none;'}
+        %label{:for => 'name', :id => 'search_label'}
+            = 'fotolog.com/'
+        %input{:name => 'name', :value => @name, :id => 'search_box'}
+        %input{:id => 'search_button', :type => 'submit', :value => 'Give it to me baby!'}

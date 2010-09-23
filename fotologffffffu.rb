@@ -6,6 +6,7 @@ Bundler.require :default
 require 'open-uri'
 set :app_file, __FILE__
 
+require 'app/application_helper'
 require 'app/cache'
 require 'app/fotolog'
 require 'app/main_controller'
