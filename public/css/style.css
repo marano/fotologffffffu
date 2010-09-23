@@ -25,7 +25,10 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
   display: block;
 }
-
+#userlist {
+    width: 80%;
+    padding:left: 10%
+}
 /* line 42, ../../../../.rvm/gems/ruby-1.8.7-p302@fotolog/gems/html5-boilerplate-0.2.2/stylesheets/html5-boilerplate/_reset.scss */
 nav ul {
   list-style: none;

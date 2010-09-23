@@ -13,11 +13,12 @@
     %recent_users
         %h2
             recent memories
-        %ul
-            - @recent_users.each do |each|
-                %li{:id => "recent_user_#{each}", :class => 'recent_user_item'}
-                    %a{:href => "/#{each}"}
-                        = "/#{each}"
+        #userlist
+            %ul
+                - @recent_users.each do |each|
+                    %li{:id => "recent_user_#{each}", :class => 'recent_user_item'}
+                        %a{:href => "/#{each}"}
+                            = "/#{each}"
 
 #share{:style => 'margin-top: 20px;'}
     #facebook_share{:style => 'margin: 10px;'}
