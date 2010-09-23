@@ -9,9 +9,7 @@ class Fotolog
   end
 
   def years
-    doc = Nokogiri::HTML(open(archive_url))
-    years = doc.css('#years').text
-    years.scan(/\d{4}+/)
+    Nokogiri::HTML(open(archive_url)).css('#years').text.scan(/\d{4}+/)
   end
 
   def archive_url
