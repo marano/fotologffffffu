@@ -130,7 +130,8 @@ html {
 
 /* line 20, ../src/partials/_example.scss */
 a, a:active, a:visited {
-  color: #607890;
+  color: #444;
+  text-decoration: none;
 }
 
 /* line 21, ../src/partials/_example.scss */
