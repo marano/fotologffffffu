@@ -9,6 +9,13 @@
         %input{:name => 'name', :value => @name, :id => 'search_box'}
         %input{:id => 'search_button', :type => 'submit', :value => 'Give it to me baby!'}
 
+- unless @recent_users.nil?
+    %recent_users
+        %ul
+            - @recent_users.each do |each|
+                %li{:id => "recent_user_#{each}"}
+                    = each
+
 - unless @photos.nil?
     %div{:id => 'photos'}
         - @photos.each do |photo|
@@ -16,7 +23,7 @@
 
 #share{:style => 'clear: both;'}
     %a{:href => "http://www.facebook.com/sharer.php", :name => "fb_share", :type => "button"} Share
-    %br
+    
     %script{:src => "http://static.ak.fbcdn.net/connect.php/js/FB.Share", :type => "text/javascript"}
     %a.twitter-share-button{"data-count" => "none", "data-text" => "Check out my Fotolog photos on Fotologffffffu", :href => "http://twitter.com/share"} Tweet
     %script{:src => "http://platform.twitter.com/widgets.js", :type => "text/javascript"}

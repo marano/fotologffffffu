@@ -53,7 +53,6 @@ describe 'main controller' do
       it 'should be ok' do
         last_response.should be_ok
       end
-
   end
 end
 
