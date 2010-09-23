@@ -4,7 +4,6 @@ require 'sinatra'
 require 'rack/test'
 require 'fakeweb'
 require 'mocha'
-require 'support'
 
 set :environment, :test
 
@@ -30,5 +29,5 @@ def mock_requests_fixture_for_fotolog
   FakeWeb.register_uri(:get, "http://www.fotolog.com.br/marano/archive?year=2008&month=09", :body => fixture_file('photos.html'))
 end
 
-Cache.stubs(:open).returns(CacheStub.new)
+Cache.stubs(:instance).returns(CacheStub.new)
 

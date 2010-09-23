@@ -26,28 +26,29 @@ def retrieve_photos
   @name = params[:name]
   add_fotolog_to_cache @name
   add_user_to_cache @name
-  @photos = cache.get "#{@name}"
+  @photos = cache.get @name
 end
 
 def cache
-  @@cache = Cache.open
+  Cache.instance
 end
 
 def recent_users
   if cache.get('recent_users').nil?
-    cache.set('recent_users', [])
+    cache.set 'recent_users', []
   end  
-  cache.get('recent_users')  
+  cache.get 'recent_users'
 end
 
 def add_fotolog_to_cache name
-  cache.set("#{name}", Fotolog.new(@name).photos) if cache.get("#{name}").nil?
+  cache.set(name, Fotolog.new(name).photos) if cache.get(name).nil?
 end
 
 def add_user_to_cache user 
   unless recent_users.include? user
-    recent_users.push(user)
-    cache.set('recent_users', recent_users)
+    recent_users_list = recent_users
+    recent_users_list.push user
+    cache.set 'recent_users', recent_users_list
   end
 end
 
