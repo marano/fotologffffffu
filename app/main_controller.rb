@@ -24,5 +24,7 @@ end
 def retrieve_photos
   @name = params[:name]
   fotolog = Fotolog.new(@name)
-  @photos = fotolog.photos
+  @cachedphotos = @@cache.set("#{@name}", fotolog.photos) if @@cache.get("#{@name}").nil?
+  @photos = @@cache.get "#{@name}"
 end
+
