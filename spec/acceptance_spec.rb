@@ -13,7 +13,7 @@ describe 'home page' do
     before do
       mock_requests_fixture_for_fotolog
       fill_in 'name', :with => 'marano'
-      click_button 'go'
+      click_button 'search_button'
     end
     it 'should open user photos' do
       page.should have_xpath "//div[@id='photos']"
