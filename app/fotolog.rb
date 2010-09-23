@@ -30,7 +30,20 @@ class Fotolog
   end
 
   def full_image_for photo
-    photo.gsub('_t', '_f')
+    addr = ''
+    splited = photo.split('_t')
+    splited.each_index do |index|
+      if index == splited.size - 1
+        addr = "#{addr}_f#{splited[index]}"
+      else
+        if index == 0
+          addr = splited[index]
+        else
+          addr = "#{addr}_t#{splited[index]}"
+        end
+      end
+    end
+    return addr
   end
 end
 
