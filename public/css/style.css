@@ -365,15 +365,17 @@ h2 {
 }
 
 #search_label {
-  font-size: 350%;
+  font-size: 320%;
 }
 
 #search_box {
-  font-size: 210%;
+  font-size: 320%;
+  width: 330px;
 }
 
 #search_button {
   font-size: 200%;
+  height: 59px;
 }
 
 /* line 14, ../src/partials/_page.scss */

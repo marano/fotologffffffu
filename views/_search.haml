@@ -1,6 +1,12 @@
 #search
     %form{:action => '/', :style => 'float: none;'}
-        %label{:for => 'name', :id => 'search_label'}
-            = 'fotolog.com/'
-        %input{:name => 'name', :value => @name, :id => 'search_box'}
-        %input{:id => 'search_button', :type => 'submit', :value => 'Give it to me baby!'}
+        %table{:style => 'margin-left: auto; margin-right: auto;'}
+            %tbody{:style => 'vertical-align: middle;'}
+                %tr
+                    %td{:style => 'vertical-align: middle;'}
+                        %label{:for => 'name', :id => 'search_label'}
+                            = 'fotolog.com/'
+                    %td{:style => 'vertical-align: middle;'}
+                        %input{:name => 'name', :value => @name, :id => 'search_box'}
+                    %td{:style => 'vertical-align: middle;'}
+                        %input{:id => 'search_button', :type => 'submit', :value => 'Give it to me, baby!'}
