@@ -15,10 +15,6 @@
         %input{:name => 'name', :value => @name, :id => 'search_box'}
         %input{:id => 'search_button', :type => 'submit', :value => 'Give it to me baby!'}
 
-%div{:id => 'photos'}
-    - @photos.each do |photo|
-        %img(src = photo)
-
 #share{:style => 'margin-top: 20px;'}
     #facebook_share{:style => 'margin: 10px;'}
         %a{:href => "http://www.facebook.com/sharer.php", :name => "fb_share", :type => "button"} Share
@@ -26,4 +22,8 @@
         %script{:src => "http://static.ak.fbcdn.net/connect.php/js/FB.Share", :type => "text/javascript"}
         %a.twitter-share-button{"data-count" => "none", "data-text" => "Check out my Fotolog photos on Fotologffffffu", :href => "http://twitter.com/share"} Tweet
         %script{:src => "http://platform.twitter.com/widgets.js", :type => "text/javascript"}
+
+%div{:id => 'photos'}
+    - @photos.each do |photo|
+        %img(src = photo)
 
