@@ -1,2 +1,3 @@
-require 'fotolog_parser'
+require 'fotologffffffu'
 run Sinatra::Application
+
