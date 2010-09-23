@@ -348,6 +348,10 @@ h1 {
   font-size: 1000%;
 }
 
+h2 {
+  font-size: 110%;
+}
+
 #content {
   text-align: center;
 }
@@ -397,3 +401,11 @@ input:invalid, textarea:invalid {
 .no-boxshadow textarea:invalid {
   background-color: #f0dddd;
 }
+
+.recent_user_item {
+  list-style: none;
+  display: inline;
+  font-size: 150%;
+  padding: 10px;
+}
+
