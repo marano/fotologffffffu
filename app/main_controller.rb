@@ -10,7 +10,6 @@ end
 get '/:name' do
   if params.size > 1
     redirect "/#{params[:name]}"
-    return
   end
   retrieve_photos
   haml :wall
