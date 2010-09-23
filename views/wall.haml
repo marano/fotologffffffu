@@ -1,23 +1,18 @@
-- @title = "fotologffffffu"
+- @title = "#{@name} at fotologffffffu"
 
-%h1 fotologffffffu!
+%h1
+    = "/#{@name}"
 
 #search
     %form{:action => '/', :style => 'float: none;'}
         %label{:for => 'name', :id => 'search_label'}
             = 'fotolog.com/'
-        %input{:name => 'name', :id => 'search_box'}
+        %input{:name => 'name', :value => @name, :id => 'search_box'}
         %input{:id => 'search_button', :type => 'submit', :value => 'Give it to me baby!'}
 
-- unless @recent_users.nil?
-    %recent_users
-        %h2
-            recent memories
-        %ul
-            - @recent_users.each do |each|
-                %li{:id => "recent_user_#{each}", :class => 'recent_user_item'}
-                    %a{:href => "/#{each}"}
-                        = "/#{each}"
+%div{:id => 'photos'}
+    - @photos.each do |photo|
+        %img(src = photo)
 
 #share{:style => 'margin-top: 20px;'}
     #facebook_share{:style => 'margin: 10px;'}

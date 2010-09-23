@@ -9,7 +9,7 @@ end
 
 get '/:name' do
   retrieve_photos
-  haml :index
+  haml :wall
 end
 
 get '/:name/slide' do
