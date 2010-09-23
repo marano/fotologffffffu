@@ -11,7 +11,7 @@ require 'support'
 
 set :views => File.join(File.dirname(__FILE__), "..", "views")
 
-FakeWeb.allow_net_connect = false
+FakeWeb.allow_net_connect = true
 
 def fixture_file(file)
   File.open(File.join(File.dirname(__FILE__), 'fixtures', file), 'r:utf-8').read

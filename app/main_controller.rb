@@ -11,8 +11,15 @@ get '/:name' do
   if params.size > 1
     redirect "/#{params[:name]}"
   end
-  retrieve_photos
-  haml :wall
+  if retrieve_photos
+    haml :wall
+  else
+    raise Sinatra::NotFound
+  end
+end
+
+not_found do
+  haml :not_found
 end
 
 get '/:name/slide' do
@@ -27,7 +34,9 @@ end
 
 def retrieve_photos
   @name = params[:name]
-  add_fotolog_to_cache @name
+  fotolog = Fotolog.new(@name)
+  fotolog.valid? or return
+  add_fotolog_to_cache fotolog
   add_user_to_cache @name
   @photos = cache.get @name
 end
@@ -43,8 +52,8 @@ def recent_users
   cache.get 'recent_users'
 end
 
-def add_fotolog_to_cache name
-  cache.set(name, Fotolog.new(name).photos) if cache.get(name).nil?
+def add_fotolog_to_cache fotolog
+  cache.set(fotolog.user, fotolog.photos) if cache.get(fotolog.user).nil?
 end
 
 def add_user_to_cache user 

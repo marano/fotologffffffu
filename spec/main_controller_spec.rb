@@ -26,6 +26,16 @@ describe 'main controller' do
     end
   end
   
+  context 'given a non existent fotolog' do
+    before do
+      before { FakeWeb.register_uri(:get, "http://www.fotolog.com/this_fotolog_doesnt_exists/archive", :body => fixture_file('non_existent_fotolog.html'), :status => ["404", "Not Found"]) }
+      get '/this_fotolog_doesnt_exists'
+    end
+    it 'should return a not found status' do
+      last_response.status.should be 404
+    end
+  end
+  
   context 'given a fotolog' do
     before do
       mock_requests_fixture_for_fotolog
