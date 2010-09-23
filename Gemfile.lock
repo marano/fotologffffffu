@@ -17,6 +17,8 @@ GEM
     haml (3.0.18)
     json_pure (1.4.6)
     mime-types (1.16)
+    mocha (0.9.8)
+      rake
     nokogiri (1.4.3.1)
     rack (1.2.1)
     rack-test (0.5.4)
@@ -48,6 +50,7 @@ DEPENDENCIES
   dalli
   fakeweb
   haml
+  mocha
   nokogiri
   rack-test
   rspec (>= 2.0.0.beta.17)

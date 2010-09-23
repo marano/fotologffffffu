@@ -10,5 +10,6 @@ group :test do
   gem 'rack-test'
   gem 'fakeweb'
   gem 'capybara'
+  gem 'mocha'
 end
 
