@@ -19,7 +19,7 @@ describe 'home page' do
       page.should have_xpath "//div[@id='photos']"
     end
     it 'should show the user name on the search box' do
-      page.should have_xpath "//input[@name='name']"
+      find_field('name').value.should == 'marano'
     end
   end
 end
