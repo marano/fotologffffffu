@@ -1,4 +1,4 @@
-require 'fotolog_parser'
+require 'fotologffffffu'
 
 require 'sinatra'
 require 'rack/test'
