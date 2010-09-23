@@ -3,6 +3,10 @@ class Fotolog
   def initialize user
     @user = user
   end
+  
+  def valid?
+    not Net::HTTP.get_response(URI.parse(archive_url)).is_a? Net::HTTPNotFound
+  end
 
   def year_archive_url year
     "http://www.fotolog.com.br/#{@user}/archive?year=#{year}&month=1"
