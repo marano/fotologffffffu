@@ -41,6 +41,17 @@ describe 'main controller' do
     end
   end
   
+  context 'given a fotolog with parameters' do
+    before do
+      mock_requests_fixture_for_fotolog
+      get '/marano?ref=nf'
+    end
+    it 'should redirect to page without parameters' do
+      last_response.status.should be 302
+      last_response.headers['Location'].should == '/marano'
+    end
+  end
+  
   context 'slide show' do
     before { get '/marano/slide' }
     it 'should be ok' do
