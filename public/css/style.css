@@ -410,3 +410,7 @@ input:invalid, textarea:invalid {
   padding: 10px;
 }
 
+#end {
+  font-size: 1000%
+}
+
