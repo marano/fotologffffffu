@@ -8,10 +8,11 @@ include Capybara
 Capybara.app = Sinatra::Application.new
 
 describe 'home page' do
+  let (:user) {'marano'}
   before { visit '/' }
   context 'filling username and clicking go' do
     before do
-      mock_requests_fixture_for_fotolog
+      mock_requests_fixture_for_fotolog user
       fill_in 'name', :with => 'marano'
       click_button 'search_button'
     end
@@ -24,7 +25,7 @@ describe 'home page' do
   end
   context 'retrieving last users' do
     before do
-      mock_requests_fixture_for_fotolog
+      mock_requests_fixture_for_fotolog user
       fill_in 'name', :with => 'marano'
       click_button 'search_button'
     end
