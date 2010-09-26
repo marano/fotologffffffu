@@ -11,6 +11,9 @@ describe Fotolog do
   end
 
   context 'that exists' do
+      before(:each) do
+        FakeWeb.register_uri(:get, "http://www.fotolog.com/marano/archive", :body => fixture_file('archive.html'))
+      end
     let(:fotolog) { Fotolog.new 'marano' }
     it 'should tell it is valid' do
       fotolog.should be_valid
@@ -53,12 +56,16 @@ describe Fotolog do
     end
 
     context 'updating photos from a cached fotolog' do
-      let (:user) {'gabocaa'}
+      let (:fotolog) {Fotolog.new 'gabocaa'}
       before(:each) do
-        FakeWeb.register_uri(:get, "http://www.fotolog.com.br/gabocaa", :body => [fixture_file('cached_archive.html'),fixture_file('uncached_archive.html')] )
+        FakeWeb.register_uri(:get, "http://www.fotolog.com.br/gabocaa/archive", :body => fixture_file('uncached_archive.html') )
       end
       it 'should get new photos to cache' do
-
+        mock_requests_fixture_for_fotolog 'gabocaa'
+        fotolog.retrieve_photos
+        fotolog = Fotolog.new 'gabocaa'
+        fotolog.update_cache.should be_true
+        fotolog.update_cache.should be_false
       end
     end
   end
