@@ -90,7 +90,7 @@ class Fotolog
   end
 
   def last_photo
-    doc = Nokogiri::HTML(open("http://www.fotolog.com.br/#{@user}/archive"))
+    doc = Nokogiri::HTML(open("http://www.fotolog.com/#{@user}/archive"))
     full_image_for doc.css('.last .imageContainer img')[0].attributes['src'].value
   end
 end
