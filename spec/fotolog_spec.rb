@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Fotolog class' do
+describe Fotolog do
 
   context 'for non existent fotolog' do
     before { FakeWeb.register_uri(:get, "http://www.fotolog.com/this_fotolog_doesnt_exists/archive", :body => fixture_file('non_existent_fotolog.html'), :status => ["404", "Not Found"]) }
