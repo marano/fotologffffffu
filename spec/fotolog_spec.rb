@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'Fotolog class' do
-  
+
   context 'for non existent fotolog' do
     before { FakeWeb.register_uri(:get, "http://www.fotolog.com/this_fotolog_doesnt_exists/archive", :body => fixture_file('non_existent_fotolog.html'), :status => ["404", "Not Found"]) }
     let(:fotolog) { Fotolog.new 'this_fotolog_doesnt_exists' }
@@ -9,7 +9,7 @@ describe 'Fotolog class' do
       fotolog.should_not be_valid
     end
   end
-  
+
   context 'that exists' do
     let(:fotolog) { Fotolog.new 'marano' }
     it 'should tell it is valid' do
@@ -49,6 +49,16 @@ describe 'Fotolog class' do
         photo = 'http://spc.fotolog.com.br/photo/12/16/103/p_tink_th_tat/1189983175_t.jpg'
         big_photo = 'http://spc.fotolog.com.br/photo/12/16/103/p_tink_th_tat/1189983175_f.jpg'
         fotolog.full_image_for(photo).should == big_photo
+      end
+    end
+
+    context 'updating photos from a cached fotolog' do
+      let (:user) {'gabocaa'}
+      before(:each) do
+        FakeWeb.register_uri(:get, "http://www.fotolog.com.br/gabocaa", :body => [fixture_file('cached_archive.html'),fixture_file('uncached_archive.html')] )
+      end
+      it 'should get new photos to cache' do
+
       end
     end
   end
