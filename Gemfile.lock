@@ -53,5 +53,6 @@ DEPENDENCIES
   mocha
   nokogiri
   rack-test
+  rake
   rspec (>= 2.0.0.beta.17)
   sinatra
