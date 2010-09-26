@@ -2,7 +2,7 @@ get '/' do
   if params.has_key? 'name'
     redirect "/#{params[:name]}"
   else
-    @recent_users = recent_users
+    @recent_users = Fotolog.new.recent_users
     haml :index
   end
 end
@@ -11,6 +11,7 @@ get '/:name' do
   if params.size > 1 || params[:name] =~ /[A-Z]/
     redirect "/#{params[:name].downcase}"
   end
+  fotolog = Fotolog.new params[:name]
   if retrieve_photos
     haml :wall
   else
@@ -35,32 +36,10 @@ end
 def retrieve_photos
   @name = params[:name]
   fotolog = Fotolog.new(@name)
-  fotolog.valid? or return
-  add_fotolog_to_cache fotolog
-  add_user_to_cache @name
-  @photos = cache.get @name
+  @photos = fotolog.retrieve_photos
 end
 
 def cache
   Cache.instance
-end
-
-def recent_users
-  if cache.get('recent_users').nil?
-    cache.set 'recent_users', []
-  end
-  cache.get 'recent_users'
-end
-
-def add_fotolog_to_cache fotolog
-  cache.set(fotolog.user, fotolog.photos) if cache.get(fotolog.user).nil?
-end
-
-def add_user_to_cache user
-  unless recent_users.include? user
-    recent_users_list = recent_users
-    recent_users_list.push user
-    cache.set 'recent_users', recent_users_list
-  end
 end
 

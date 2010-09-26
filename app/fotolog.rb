@@ -2,10 +2,10 @@ class Fotolog
 
   attr_accessor :user
 
-  def initialize user
+  def initialize user=nil
     @user = user
   end
-  
+
   def valid?
     not Net::HTTP.get_response(URI.parse(archive_url)).is_a? Net::HTTPNotFound
   end
@@ -32,6 +32,35 @@ class Fotolog
       full_image_for photo.attributes['src'].value
     end
   end
+
+def add_to_cache
+  cache.set(@user, photos) if cache.get(@user).nil?
+  add_user_to_cache
+end
+
+def add_user_to_cache
+  unless recent_users.include? @user
+    recent_users_list = recent_users
+    recent_users_list.push @user
+    cache.set 'recent_users', recent_users_list
+  end
+end
+
+def cache
+  Cache.instance
+end
+def recent_users
+  if cache.get('recent_users').nil?
+    cache.set 'recent_users', []
+  end
+  cache.get 'recent_users'
+end
+
+def retrieve_photos
+  valid? or return
+  add_to_cache
+  cache.get @user
+end
 
   def full_image_for photo
     addr = ''
