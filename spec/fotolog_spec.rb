@@ -68,7 +68,7 @@ describe Fotolog do
         fotolog.update_cache.should be_true
         fotolog.update_cache.should be_false
       end
-      it 'should not find any photos to a fotolog not updated' do
+      pending 'should not find any photos to a fotolog not updated' do
         FakeWeb.register_uri(:get, "http://www.fotolog.com.br/gabocaa/archive", :body => fixture_file('cached_archive.html') )
         mock_requests_fixture_for_fotolog 'gabocaa'
         fotolog.retrieve_photos
