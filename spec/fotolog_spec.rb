@@ -58,14 +58,23 @@ describe Fotolog do
     context 'updating photos from a cached fotolog' do
       let (:fotolog) {Fotolog.new 'gabocaa'}
       before(:each) do
-        FakeWeb.register_uri(:get, "http://www.fotolog.com.br/gabocaa/archive", :body => fixture_file('uncached_archive.html') )
+
       end
-      it 'should get new photos to cache' do
+      pending 'should get new photos to cache' do
+        FakeWeb.register_uri(:get, "http://www.fotolog.com.br/gabocaa/archive", :body => fixture_file('uncached_archive.html') )
         mock_requests_fixture_for_fotolog 'gabocaa'
         fotolog.retrieve_photos
         fotolog = Fotolog.new 'gabocaa'
         fotolog.update_cache.should be_true
         fotolog.update_cache.should be_false
+      end
+      it 'should not find any photos to a fotolog not updated' do
+        FakeWeb.register_uri(:get, "http://www.fotolog.com.br/gabocaa/archive", :body => fixture_file('cached_archive.html') )
+        mock_requests_fixture_for_fotolog 'gabocaa'
+        fotolog.retrieve_photos
+        fotolog = Fotolog.new 'gabocaa'
+        fotolog.update_cache.should be_false
+
       end
     end
   end
