@@ -14,7 +14,8 @@
 
 %div{:id => 'photos'}
     - @photos.each do |photo|
-        %img(src = photo)
+        %link photo
+            %img(src = photo)
 
 %p{:id => 'end'}
     that's alllllllll
