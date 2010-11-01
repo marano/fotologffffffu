@@ -14,7 +14,7 @@
 
 %div{:id => 'photos'}
     - @photos.each do |photo|
-        %link photo
+        %a {:href => photo}
             %img(src = photo)
 
 %p{:id => 'end'}
