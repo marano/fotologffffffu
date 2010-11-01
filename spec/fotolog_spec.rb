@@ -11,9 +11,9 @@ describe Fotolog do
   end
 
   context 'that exists' do
-      before(:each) do
-        FakeWeb.register_uri(:get, "http://www.fotolog.com/marano/archive", :body => fixture_file('archive.html'))
-      end
+    before(:each) do
+      FakeWeb.register_uri(:get, "http://www.fotolog.com/marano/archive", :body => fixture_file('archive.html'))
+    end
     let(:fotolog) { Fotolog.new 'marano' }
     it 'should tell it is valid' do
       fotolog.should be_valid
