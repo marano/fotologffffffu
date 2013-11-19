@@ -5,7 +5,7 @@ Bundler.setup
 Bundler.require :default
 require 'open-uri'
 set :app_file, __FILE__
-set :server, 'webrick'
+set :server, 'unicorn'
 
 require './app/application_helper'
 require './app/cache'
