@@ -1,4 +1,3 @@
-require 'net/http'
 require 'httpclient'
 require 'threadz'
 class Fotolog
@@ -13,19 +12,19 @@ class Fotolog
   end
 
   def valid?
-    not Net::HTTP.get_response(URI.parse(archive_url)).is_a? Net::HTTPNotFound
+    @client.head(archive_url).status == 200
   end
 
   def year_archive_url year
-    "http://www.fotolog.com.br/#{@user}/archive/1/#{year}"
+    "http://www.fotolog.com.br/#{@user}/archive/1/#{year}/"
   end
 
   def years
-    Nokogiri::HTML(open(archive_url)).css('#list_years_calendar').text.scan(/\d{4}+/)
+    Nokogiri::HTML(@client.get_content(archive_url)).css('#list_years_calendar').text.scan(/\d{4}+/)
   end
 
   def archive_url
-    "http://www.fotolog.com.br/#{@user}/archive"
+    "http://www.fotolog.com.br/#{@user}/archive/"
   end
 
   def photos
@@ -103,8 +102,8 @@ class Fotolog
   end
 
   def last_photo
-    doc = Nokogiri::HTML(open("http://www.fotolog.com/#{@user}/archive"))
-    full_image_for doc.css('.last').css('.imageContainer img')[0].attributes['src'].value
+    doc = Nokogiri::HTML(@client.get_content("http://www.fotolog.com/#{@user}/archive/"))
+    full_image_for doc.css(".wall_img_container img")[0].attributes['src'].value
   end
 end
 

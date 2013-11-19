@@ -23,10 +23,10 @@ describe Fotolog do
         FakeWeb.register_uri(:get, "http://www.fotolog.com.br/marano/archive", :body => fixture_file('archive.html'))
       end
       it 'should retrieve user archive URL' do
-        fotolog.archive_url.should == 'http://www.fotolog.com.br/marano/archive'
+        fotolog.archive_url.should == 'http://www.fotolog.com.br/marano/archive/'
       end
       it 'should retrieve year url' do
-        fotolog.year_archive_url('2004').should == 'http://www.fotolog.com.br/marano/archive/1/2004'
+        fotolog.year_archive_url('2004').should == 'http://www.fotolog.com.br/marano/archive/1/2004/'
       end
       it 'should retrieve all years which have a photo on it' do
         #TODO: Update to 2014 when time comes. Do not automate.
