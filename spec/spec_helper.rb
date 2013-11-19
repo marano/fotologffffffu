@@ -3,11 +3,11 @@ require_relative '../fotologffffffu'
 require 'sinatra'
 require 'rack/test'
 require 'fakeweb'
-require 'mocha'
+require 'mocha/setup'
 
 set :environment, :test
 
-require 'support'
+require_relative 'support'
 
 set :views => File.join(File.dirname(__FILE__), "..", "views")
 
@@ -20,9 +20,9 @@ end
 def mock_requests_fixture_for_fotolog name
   FakeWeb.register_uri(:get, "http://www.fotolog.com/#{name}/archive", :body => fixture_file('archive.html'))
 
-  (2003..2010).to_a.each do |year|
+  (2003..2013).to_a.each do |year|
     (1..12).to_a.each do |month|
-      FakeWeb.register_uri(:get, "http://www.fotolog.com.br/#{name}/archive?year=#{year}&month=#{'0' if month.to_i < 10}#{month}", :body => fixture_file('photos.html'))
+      FakeWeb.register_uri(:get, "http://www.fotolog.com.br/#{name}/archive/#{'0' if month.to_i < 10}#{month}/#{year}", :body => fixture_file('photos.html'))
     end
   end
 

@@ -1,3 +1,4 @@
+require 'net/http'
 class Fotolog
 
   attr_accessor :user
@@ -11,15 +12,15 @@ class Fotolog
   end
 
   def year_archive_url year
-    "http://www.fotolog.com.br/#{@user}/archive?year=#{year}&month=1"
+    "http://www.fotolog.com.br/#{@user}/archive/1/#{year}"
   end
 
   def years
-    Nokogiri::HTML(open(archive_url)).css('#years').text.scan(/\d{4}+/)
+    Nokogiri::HTML(open(archive_url)).css('#list_years_calendar').text.scan(/\d{4}+/)
   end
 
   def archive_url
-    "http://www.fotolog.com/#{@user}/archive"
+    "http://www.fotolog.com.br/#{@user}/archive"
   end
 
   def photos
@@ -27,14 +28,14 @@ class Fotolog
   end
 
   def photos_for_month year, month
-    doc = Nokogiri::HTML(open("http://www.fotolog.com.br/#{@user}/archive?year=#{year}&month=#{'0' if month.to_i < 10}#{month.to_i}"))
-    doc.css('.imageContainer img').map do |photo|
+    doc = Nokogiri::HTML(open("http://www.fotolog.com.br/#{@user}/archive/#{'0' if month.to_i < 10}#{month.to_i}/#{year}"))
+    doc.css('.calendar_month_day img').map do |photo|
       full_image_for photo.attributes['src'].value
     end
   end
 
   def add_to_cache
-    cache.set(@user, photos) if cache.get(@user).nil?
+    cache.set(@user, photos) if Array(cache.get(@user)).empty?
     add_user_to_cache
   end
 
@@ -50,7 +51,7 @@ class Fotolog
     Cache.instance
   end
   def recent_users
-    if cache.get('recent_users').nil?
+    if Array(cache.get('recent_users')).empty?
       cache.set 'recent_users', []
     end
     cache.get 'recent_users'
