@@ -5,6 +5,7 @@ gem 'sinatra'
 gem 'haml'
 gem 'nokogiri'
 gem 'dalli'
+gem 'httpclient'
 gem 'shotgun'
 gem 'pry'
 
