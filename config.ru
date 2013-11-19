@@ -1,3 +1,3 @@
-require 'fotologffffffu'
+require './fotologffffffu'
 run Sinatra::Application
 

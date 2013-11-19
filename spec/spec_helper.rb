@@ -1,4 +1,4 @@
-require 'fotologffffffu'
+require_relative '../fotologffffffu'
 
 require 'sinatra'
 require 'rack/test'
