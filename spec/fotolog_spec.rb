@@ -42,7 +42,7 @@ describe Fotolog do
 
       it 'should retrieve photo urls' do
         photos = ["http://sp4.fotolog.com/photo/20/29/104/marano/1220844280164_f.jpg", "http://sp4.fotolog.com/photo/20/29/104/marano/1221058240106_f.jpg", "http://sp4.fotolog.com/photo/20/29/104/marano/1221348619989_f.jpg", "http://sp4.fotolog.com/photo/20/29/104/marano/1221433699200_f.jpg", "http://sp4.fotolog.com/photo/20/29/104/marano/1221691789949_f.jpg", "http://sp4.fotolog.com/photo/20/29/104/marano/1222477956299_f.jpg"]
-        fotolog.photos_for_month('2008', '09').join["photos"].should == photos
+        fotolog.photos_for_month('2008', '09').flatten.should == photos
       end
       it 'should parse photo url correctly' do
         photo = 'http://spc.fotolog.com.br/photo/12/16/103/pink_that/1189983175_t.jpg'
