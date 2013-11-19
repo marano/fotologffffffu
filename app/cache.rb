@@ -1,6 +1,6 @@
 class Cache
   def self.instance
-    Dalli::Client.new('localhost:11211')
+    Dalli::Client.new
   end
 end
 

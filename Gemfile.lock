@@ -15,6 +15,7 @@ GEM
       tilt
     httpclient (2.3.4.1)
     kgio (2.8.1)
+    memcachier (0.0.2)
     metaclass (0.0.1)
     method_source (0.8.2)
     mime-types (2.0)
@@ -66,6 +67,7 @@ DEPENDENCIES
   fakeweb
   haml
   httpclient
+  memcachier
   mocha
   nokogiri
   pry
