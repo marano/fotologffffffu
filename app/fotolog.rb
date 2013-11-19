@@ -12,7 +12,7 @@ class Fotolog
   end
 
   def valid?
-    @client.head(archive_url).status == 200
+    @client.get(archive_url, follow_redirect: true).status == 200
   end
 
   def year_archive_url year
