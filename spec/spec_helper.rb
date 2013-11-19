@@ -18,7 +18,7 @@ def fixture_file(file)
 end
 
 def mock_requests_fixture_for_fotolog name
-  FakeWeb.register_uri(:get, "http://www.fotolog.com/#{name}/archive", :body => fixture_file('archive.html'))
+  FakeWeb.register_uri(:get, "http://www.fotolog.com.br/#{name}/archive", :body => fixture_file('archive.html'))
 
   (2003..2013).to_a.each do |year|
     (1..12).to_a.each do |month|
