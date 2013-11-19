@@ -8,8 +8,9 @@ get '/' do
 end
 
 get '/:name' do
-  if params.size > 1 || params[:name] =~ /[A-Z]/
-    redirect "/#{params[:name].downcase}"
+  correct_path = "/#{params[:name].downcase}"
+  if request.fullpath != correct_path
+    redirect correct_path
   end
   fotolog = Fotolog.new params[:name]
   if retrieve_photos
