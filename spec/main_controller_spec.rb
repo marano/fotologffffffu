@@ -23,13 +23,13 @@ describe 'main controller' do
       last_response.status.should be 302
     end
     it 'should go to fotolog page' do
-      last_response.headers['Location'].should == "/#{user}"
+      last_response.headers['Location'].should == "http://example.org/#{user}"
     end
   end
 
   context 'given a non existent fotolog' do
+    before { FakeWeb.register_uri(:get, "http://www.fotolog.com/this_fotolog_doesnt_exists/archive", :body => fixture_file('non_existent_fotolog.html'), :status => ["404", "Not Found"]) }
     before do
-      before { FakeWeb.register_uri(:get, "http://www.fotolog.com/this_fotolog_doesnt_exists/archive", :body => fixture_file('non_existent_fotolog.html'), :status => ["404", "Not Found"]) }
       get '/this_fotolog_doesnt_exists'
     end
     it 'should be a redirect to the main page' do
@@ -59,7 +59,7 @@ describe 'main controller' do
     end
     it 'should redirect to page without parameters' do
       last_response.status.should be 302
-      last_response.headers['Location'].should == '/marano'
+      last_response.headers['Location'].should == 'http://example.org/marano'
     end
   end
   context 'given a fotolog CamelCased' do
@@ -69,7 +69,7 @@ describe 'main controller' do
     end
     it 'should redirect to a small cased URL' do
       last_response.status.should be 302
-      last_response.headers['Location'].should == '/marano'
+      last_response.headers['Location'].should == 'http://example.org/marano'
     end
   end
   context 'slide show' do
