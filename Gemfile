@@ -8,13 +8,11 @@ gem 'nokogiri'
 gem 'memcachier'
 gem 'dalli'
 gem 'httpclient'
-gem 'shotgun'
-gem 'pry'
 
 group :test do
   gem 'rspec', '>= 2.0.0'
   gem 'rack-test'
-  gem 'fakeweb'
+  gem 'webmock'
   gem 'capybara'
   gem 'mocha'
 end
