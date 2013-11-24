@@ -28,7 +28,7 @@ describe 'main controller' do
   end
 
   context 'given a non existent fotolog' do
-    before { FakeWeb.register_uri(:get, "http://www.fotolog.com/this_fotolog_doesnt_exists/archive", :body => fixture_file('non_existent_fotolog.html'), :status => ["404", "Not Found"]) }
+    before { stub_request(:get, "http://www.fotolog.com.br/this_fotolog_doesnt_exists/archive/").to_return(:body => fixture_file('non_existent_fotolog.html'), :status => ["404", "Not Found"]) }
     before do
       get '/this_fotolog_doesnt_exists'
     end
@@ -74,17 +74,27 @@ describe 'main controller' do
     end
   end
   context 'slide show' do
-    before { get '/marano/slide' }
+    before do
+      stub_request(:get, "http://www.fotolog.com.br/marano/archive/").to_return(body: fixture_file('archive.html'))
+      mock_requests_fixture_for_fotolog  'marano'
+      get '/marano/slide'
+    end
+
     it 'should be ok' do
       last_response.should be_ok
     end
   end
 
   context 'rss feed' do
-    before { get '/marano/feed' }
-      it 'should be ok' do
-        last_response.should be_ok
-      end
+    before do
+      stub_request(:get, "http://www.fotolog.com.br/marano/archive/").to_return(body: fixture_file('archive.html'))
+      mock_requests_fixture_for_fotolog  'marano'
+      get '/marano/feed'
+    end
+
+    it 'should be ok' do
+      last_response.should be_ok
+    end
   end
 end
 

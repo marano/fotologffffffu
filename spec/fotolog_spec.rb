@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Fotolog do
 
   context 'for non existent fotolog' do
-    before { FakeWeb.register_uri(:get, "http://www.fotolog.com/this_fotolog_doesnt_exists/archive", :body => fixture_file('non_existent_fotolog.html'), :status => ["404", "Not Found"]) }
+    before { stub_request(:get, "http://www.fotolog.com.br/this_fotolog_doesnt_exists/archive/").to_return(:body => fixture_file('non_existent_fotolog.html'), :status => ["404", "Not Found"]) }
     let(:fotolog) { Fotolog.new 'this_fotolog_doesnt_exists' }
     it 'should tell it is not valid' do
       fotolog.should_not be_valid
@@ -12,7 +12,7 @@ describe Fotolog do
 
   context 'that exists' do
     before(:each) do
-      FakeWeb.register_uri(:get, "http://www.fotolog.com/marano/archive", :body => fixture_file('archive.html'))
+      stub_request(:get, "http://www.fotolog.com.br/marano/archive/").to_return(:body => fixture_file('archive.html'))
     end
     let(:fotolog) { Fotolog.new 'marano' }
     it 'should tell it is valid' do
@@ -20,7 +20,7 @@ describe Fotolog do
     end
     context 'retrieving archive information' do
       before(:each) do
-        FakeWeb.register_uri(:get, "http://www.fotolog.com/marano/archive", :body => fixture_file('archive.html'))
+        stub_request(:get, "http://www.fotolog.com.br/marano/archive/").to_return(:body => fixture_file('archive.html'))
       end
       it 'should retrieve user archive URL' do
         fotolog.archive_url.should == 'http://www.fotolog.com.br/marano/archive/'
@@ -37,7 +37,7 @@ describe Fotolog do
 
     context 'retrieving photos' do
       before(:each) do
-        FakeWeb.register_uri(:get, "http://www.fotolog.com.br/marano/archive?year=2008&month=09", :body => fixture_file('photos.html'))
+        stub_request(:get, "http://www.fotolog.com.br/marano/archive/9/2008/").to_return(:body => fixture_file('photos.html'))
       end
 
       it 'should retrieve photo urls' do
@@ -62,7 +62,7 @@ describe Fotolog do
 
       end
       pending 'should get new photos to cache' do
-        FakeWeb.register_uri(:get, "http://www.fotolog.com.br/gabocaa/archive", :body => fixture_file('uncached_archive.html') )
+        stub_request(:get, "http://www.fotolog.com.br/gabocaa/archive/").to_return(:body => fixture_file('uncached_archive.html') )
         mock_requests_fixture_for_fotolog 'gabocaa'
         fotolog.retrieve_photos
         fotolog = Fotolog.new 'gabocaa'
@@ -70,7 +70,7 @@ describe Fotolog do
         fotolog.update_cache.should be_false
       end
       pending 'should not find any photos to a fotolog not updated' do
-        FakeWeb.register_uri(:get, "http://www.fotolog.com.br/gabocaa/archive", :body => fixture_file('cached_archive.html') )
+        stub_request(:get, "http://www.fotolog.com.br/gabocaa/archive/").to_return(:body => fixture_file('cached_archive.html') )
         mock_requests_fixture_for_fotolog 'gabocaa'
         fotolog.retrieve_photos
         fotolog = Fotolog.new 'gabocaa'
