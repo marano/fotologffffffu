@@ -4,7 +4,7 @@ require 'dalli'
 Bundler.setup
 Bundler.require :default
 set :app_file, __FILE__
-set :server, 'unicorn'
+set :server, 'webrick'
 
 require './app/application_helper'
 require './app/cache'
