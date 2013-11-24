@@ -1,5 +1,4 @@
 require 'httpclient'
-require 'threadz'
 class Fotolog
 
   attr_accessor :user
@@ -7,8 +6,6 @@ class Fotolog
   def initialize user=nil
     @user = user
     @client = HTTPClient.new
-    @photos = []
-    @queue = Threadz::ThreadPool.new
   end
 
   def valid?
@@ -28,20 +25,20 @@ class Fotolog
   end
 
   def photos
-    @batch = @queue.new_batch
     years.flat_map do |year|
-      (1..12).map do |month|
-        @batch << lambda { photos_for_month(year, month) }
+      (1..12).map do |month| photos_for_month(year, month)
       end
-    end
-    @batch.wait_until_done
-    @photos.flatten
+    end.map do |thread|
+      thread.join["photos"]
+    end.flatten
   end
 
   def photos_for_month year, month
-    doc = Nokogiri::HTML(@client.get_content("http://www.fotolog.com.br/#{@user}/archive/#{'0' if month.to_i < 10}#{month.to_i}/#{year}/"))
-    @photos << doc.css('.calendar_month_day img').map do |photo|
-      full_image_for photo.attributes['src'].value
+    Thread.new do
+      doc = Nokogiri::HTML(@client.get_content("http://www.fotolog.com.br/#{@user}/archive/#{'0' if month.to_i < 10}#{month.to_i}/#{year}/"))
+      Thread.current["photos"] = doc.css('.calendar_month_day img').map do |photo|
+        full_image_for photo.attributes['src'].value
+      end
     end
   end
 
