@@ -8,6 +8,7 @@ gem 'nokogiri'
 gem 'memcachier'
 gem 'dalli'
 gem 'httpclient'
+gem 'camo'
 
 group :test do
   gem 'rspec', '>= 2.0.0'

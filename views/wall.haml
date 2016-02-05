@@ -14,8 +14,9 @@
 
 %div{:id => 'photos'}
     - @photos.each do |photo|
+        - proxy_photo = camo(photo)
         %a(href = photo)
-            %img(src = photo)
+            %img(src = proxy_photo)
 
 %p{:id => 'end'}
     that's alllllllll

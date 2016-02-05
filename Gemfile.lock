@@ -2,6 +2,7 @@ GEM
   remote: http://rubygems.org/
   specs:
     addressable (2.4.0)
+    camo (0.0.2)
     capybara (2.8.1)
       addressable
       mime-types (>= 1.16)
@@ -70,6 +71,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  camo
   capybara
   dalli
   haml
