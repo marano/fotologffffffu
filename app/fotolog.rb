@@ -13,7 +13,7 @@ class Fotolog
   end
 
   def year_archive_url year
-    "http://www.fotolog.com.br/#{@user}/archive/1/#{year}/"
+    "http://www.fotolog.com/#{@user}/archive/1/#{year}/"
   end
 
   def years
@@ -21,7 +21,7 @@ class Fotolog
   end
 
   def archive_url
-    "http://www.fotolog.com.br/#{@user}/archive/"
+    "http://www.fotolog.com/#{@user}/archive/"
   end
 
   def photos
@@ -29,7 +29,7 @@ class Fotolog
   end
 
   def photos_for_month year, month
-    doc = Nokogiri::HTML(@client.get_content("http://www.fotolog.com.br/#{@user}/archive/#{month.to_i}/#{year}/"))
+    doc = Nokogiri::HTML(@client.get_content("http://www.fotolog.com/#{@user}/archive/#{month.to_i}/#{year}/"))
     doc.css('.calendar_month_day img').map do |photo|
       full_image_for photo.attributes['src'].value
     end

@@ -28,7 +28,7 @@ describe 'main controller' do
   end
 
   context 'given a non existent fotolog' do
-    before { stub_request(:get, "http://www.fotolog.com.br/this_fotolog_doesnt_exists/archive/").to_return(:body => fixture_file('non_existent_fotolog.html'), :status => ["404", "Not Found"]) }
+    before { stub_request(:get, "http://www.fotolog.com/this_fotolog_doesnt_exists/archive/").to_return(:body => fixture_file('non_existent_fotolog.html'), :status => ["404", "Not Found"]) }
     before do
       get '/this_fotolog_doesnt_exists'
     end
@@ -75,7 +75,7 @@ describe 'main controller' do
   end
   context 'slide show' do
     before do
-      stub_request(:get, "http://www.fotolog.com.br/marano/archive/").to_return(body: fixture_file('archive.html'))
+      stub_request(:get, "http://www.fotolog.com/marano/archive/").to_return(body: fixture_file('archive.html'))
       mock_requests_fixture_for_fotolog  'marano'
       get '/marano/slide'
     end
@@ -87,7 +87,7 @@ describe 'main controller' do
 
   context 'rss feed' do
     before do
-      stub_request(:get, "http://www.fotolog.com.br/marano/archive/").to_return(body: fixture_file('archive.html'))
+      stub_request(:get, "http://www.fotolog.com/marano/archive/").to_return(body: fixture_file('archive.html'))
       mock_requests_fixture_for_fotolog  'marano'
       get '/marano/feed'
     end
